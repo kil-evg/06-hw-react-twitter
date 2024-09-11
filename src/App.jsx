@@ -11,8 +11,8 @@ function App() {
   })
 
   const [stats, setStats] = useState({
-    followers: 10,
-    following: 100
+    followers: 0,
+    following: 0
   })
 
   const changeAvatar = url => {
@@ -23,13 +23,25 @@ function App() {
     setUser(prevState => ({ ...prevState, name: name || prevState.name }))
   }
 
+  const changeFollowers = count => {
+    setStats(prevState => {
+      return (prevState.followers + count < 0 ? prevState : { ...prevState, followers: prevState.followers + count });
+    })
+  }
+
+  const changeFollowing = count => {
+    setStats(prevState => {
+      return (prevState.following + count < 0 ? prevState : { ...prevState, following: prevState.following + count });
+    })
+  }
+
   return (
     <div className='app'>
       <TwitterContext.Provider value={{
-        user, stats, changeAvatar, changeName
+        user, stats, changeAvatar, changeName, changeFollowers, changeFollowing
       }}>
         <Navigation />
-        <Body  />
+        <Body />
       </TwitterContext.Provider>
     </div>
   )
