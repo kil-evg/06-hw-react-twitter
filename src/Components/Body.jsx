@@ -2,10 +2,10 @@ import React from 'react'
 import { Sidebar } from './Sidebar'
 import { Content } from './Content'
 
-export const Body = ({user, stats, changeAvatar}) => {
+export const Body = () => {
   return (
     <div className='body'> 
-        <Sidebar changeAvatar={changeAvatar} user={user} stats={stats}/>
+        <Sidebar />
         <Content />
     </div>
   )
